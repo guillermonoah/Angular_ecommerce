@@ -38,7 +38,7 @@ const actualizar_config_admin = async function(req,res){
                 var logo_name= name[2];
                 //se actualiza la img
                 let reg = await Config.findByIdAndUpdate({_id:"662286d17cd4489f221372be"},{
-                    categorias:data.categorias,
+                    categorias:JSON.parse(data.categorias),
                     titulo:data.titulo,
                     logo:logo_name,
                     serie:data.serie,
@@ -57,7 +57,7 @@ const actualizar_config_admin = async function(req,res){
             }else{
                 console.log("No hay Img");
                 let reg = await Config.findByIdAndUpdate({_id:"662286d17cd4489f221372be"},{
-                    categorias:data.categorias,
+                    categorias:JSON.parse(data.categorias),
                     titulo:data.titulo,
                     serie:data.serie,
                     correlativo:data.correlativo,
