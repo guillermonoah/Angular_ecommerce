@@ -235,6 +235,24 @@ const registro_inventario_producto_admin = async function(req, res){
     }
 }
 
+const actualizar_producto_variedades_admin = async function(req,res){
+    if(req.user){
+        if(req.user.role == 'admin'){
+            let id = req.params['id'];
+            let data = req.body;
+
+            let reg = await Producto.findByIdAndUpdate({_id:id},{
+                titulo_variedad: data.titulo_variedad,
+                variedades: data.variedades,
+            });
+            res.status(200).send({data:reg});              
+        }else{            
+            res.status(500).send({message: 'NoAccess'});  
+        }
+    }else{        
+        res.status(500).send({message: 'NoAccess'});  
+    }
+}
 module.exports={
     registro_producto_admin,
     listar_producto_admin,
@@ -244,6 +262,7 @@ module.exports={
     eliminar_producto_admin,
     listar_inventario_producto_admin,
     eliminar_inventario_producto_admin,
-    registro_inventario_producto_admin    
+    registro_inventario_producto_admin,
+    actualizar_producto_variedades_admin
 
 }
