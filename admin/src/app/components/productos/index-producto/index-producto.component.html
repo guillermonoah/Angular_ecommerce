@@ -18,7 +18,7 @@
     </div>
     <div class="card-header">
         <div class="row">
-            <div class="clo-6">
+            <div class="col-6">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Titulo del producto" name="filtro" [(ngModel)]="filtro">
                     <div class="input-group-append">
@@ -26,6 +26,9 @@
                         <button class="btn btn-info" type="button" (click)="limpiar()">Limpiar</button>
                     </div>
                 </div>        
+            </div>
+            <div class="col-12 mt-3">
+                <button class="btn btn-success" (click)="donwload_excel()">Exportar a excel</button>
             </div>
         </div>
     </div>
@@ -72,6 +75,7 @@
                                             <a class="dropdown-item" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#delete-'+item._id" >Eliminar producto</a>
                                             <a class="dropdown-item" [routerLink]="['/panel/productos/inventario',item._id]" routerLinkActive="router-link-active">Inventario</a>
                                             <a class="dropdown-item" [routerLink]="['/panel/productos/variedades',item._id]" routerLinkActive="router-link-active">Variedades</a>
+                                            <a class="dropdown-item" [routerLink]="['/panel/productos/galeria',item._id]" routerLinkActive="router-link-active">Galeria</a>
                                         </div>    
                                     </div>
                                     <div class="modal fade" id="delete-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
