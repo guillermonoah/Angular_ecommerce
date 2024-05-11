@@ -186,6 +186,24 @@ const eliminar_cliente_admin = async function(req, res){
 }
 
 
+const obtener_cliente_guest = async function(req, res){
+
+    console.log(req.user);
+    if(req.user){
+
+        var id = req.params['id'];
+
+        try {
+            var reg = await Cliente.findById({_id:id});            
+            res.status(200).send({data:reg});                
+        } catch (error) {
+            res.status(200).send({data:undefined});                
+        }
+
+    }else{
+        res.status(500).send({message: 'NoAccess'});
+    }
+}
 
 module.exports ={
     registro_cliente,
@@ -194,5 +212,6 @@ module.exports ={
     registro_cliente_admin,
     obtener_cliente_admin,
     actualizar_cliente_admin,
-    eliminar_cliente_admin
+    eliminar_cliente_admin,
+    obtener_cliente_guest
 }
