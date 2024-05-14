@@ -1,27 +1,26 @@
 import { Component,OnInit } from '@angular/core';
-import { ClienteService } from '../../services/cliente.service';
-import { Router } from '@angular/router';
+import { ClienteService } from '../../../services/cliente.service';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrl: './nav.component.css'
+  selector: 'app-siderbar',
+  templateUrl: './siderbar.component.html',
+  styleUrl: './siderbar.component.css'
 })
-export class NavComponent implements OnInit {
+export class SiderbarComponent implements OnInit {
+
   public token:any;
   public id:any;
   public user : any = undefined;
   public user_lc : any = undefined;
-
+  
   constructor(
-    private _clienteService:ClienteService,
-    private _router:Router
-  ){
+    private _clienteService:ClienteService){
     this.token = localStorage.getItem('token');
     this.id = localStorage.getItem('_id'); 
+  }
 
-    console.log(this.user_lc);
-
+  ngOnInit(): void {
+    
     if (this.token) {
       this._clienteService.obtener_cliente_guest( this.id,this.token).subscribe(
         response=>{
@@ -39,15 +38,4 @@ export class NavComponent implements OnInit {
       );
     }
   }
-
-  ngOnInit(): void {
-    
-  }
-
-  logout(){
-    window.location.reload();
-    localStorage.clear();
-    this._router.navigate(['/']);
-  }
-
 }
