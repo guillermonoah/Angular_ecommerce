@@ -12,6 +12,7 @@ const appRoute: Routes = [
 
     {path:'cuenta/perfil', component: PerfilComponent, canActivate:[Authguard]},
     {path:'productos', component: IndexProductoComponent},//no lleva con activate por que es de ambito publico
+    {path:'productos/categoria/:categoria', component: IndexProductoComponent},
 ]
 
 export const appRoutingProviders: any[]=[];
