@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { SiderbarComponent } from './components/usuario/siderbar/siderbar.component';
 import { IndexProductoComponent } from './components/productos/index-producto/index-producto.component';
+import { ShowProductoComponent } from './components/productos/show-producto/show-producto.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { IndexProductoComponent } from './components/productos/index-producto/in
     LoginComponent,
     PerfilComponent,
     SiderbarComponent,
-    IndexProductoComponent
+    IndexProductoComponent,
+    ShowProductoComponent
   ],
   imports: [
     BrowserModule,
