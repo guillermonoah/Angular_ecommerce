@@ -3,7 +3,7 @@
 <div class="border-bottom pt-5 mt-2 mb-5">
     <h1 class="mt-2 mt-md-4 mb-3 pt-5">Configuraciones</h1>
     <div class="d-flex flex-wrap flex-md-nowrap justify-content-between">
-      <p class="text-muted">Este módulo se estableve las configuraciones de la tineda.</p>
+      <p class="text-muted">Este módulo se establece las configuraciones de la tienda.</p>
 
     </div>
   </div>
@@ -48,6 +48,7 @@
                     <tr>
                       <th>Categoria</th>
                       <th>Icono</th>
+                      <th>Eliminar</th>
                     </tr>
                  </thead>
                  <ng-container *ngIf="config.categorias.length==0">                    
@@ -60,13 +61,16 @@
                   </tbody>
                  </ng-container>
                  <ng-container *ngIf="config.categorias.length>= 1">                    
-                  <tbody *ngFor="let item of config.categorias">
+                  <tbody *ngFor="let item of config.categorias; let indice = index">
                     <tr>
                       <td>
                         {{item.titulo}}
                       </td>
                       <td>
-                        {{item.icono}}
+                       <i class="{{item.icono}}"></i> {{item.icono}}
+                      </td>
+                      <td>
+                      <a style="cursor: pointer;" class="text-danger" (click)="eliminar_categoria(indice)">[Eliminar]</a>
                       </td>
                     </tr>
                   </tbody>

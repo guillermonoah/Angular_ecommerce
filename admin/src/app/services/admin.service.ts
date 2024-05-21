@@ -37,6 +37,11 @@ export class AdminService {
       const helper = new JwtHelperService();
       var decodedToken = helper.decodeToken(token);
           
+      if (helper.isTokenExpired(token)) {
+        localStorage.clear();
+        return false;
+      }
+      
       if(!decodedToken){
         console.log('No es valido');
         localStorage.removeItem('token');
@@ -74,6 +79,11 @@ export class AdminService {
   obtener_config_admin(token :any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
     return this._http.get(this.url+'obtener_config_admin',{headers:headers});
+  } 
+  
+  obtener_config_publico():Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    return this._http.get(this.url+'obtener_config_publico',{headers:headers});
   } 
 
 }
