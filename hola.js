@@ -9,13 +9,13 @@ npm i exceljs
 npm i file-saver
 npm i jquery
 npm i @auth0/angular-jwt
-
-
+*/
+/*
 en tienda/tienda :
 npm install @ng-bootstrap/ng-bootstrap
 npm i @angular/localize
 npm install @popperjs/core --save
-
 video 48 no existe el archivo polyfills.ts--sin cambios no se hizo el import'@angular/localize/init'
+
 
 */
