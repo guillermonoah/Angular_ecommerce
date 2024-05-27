@@ -15,6 +15,7 @@ import { PerfilComponent } from './components/usuario/perfil/perfil.component';
 import { SiderbarComponent } from './components/usuario/siderbar/siderbar.component';
 import { IndexProductoComponent } from './components/productos/index-producto/index-producto.component';
 import { ShowProductoComponent } from './components/productos/show-producto/show-producto.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ShowProductoComponent } from './components/productos/show-producto/show
     PerfilComponent,
     SiderbarComponent,
     IndexProductoComponent,
-    ShowProductoComponent
+    ShowProductoComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,

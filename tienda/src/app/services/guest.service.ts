@@ -26,4 +26,5 @@ export class GuestService {
     let headers = new HttpHeaders().set('Content-Type','application/json');
     return this._http.get(this.url+'listar_producto_recomendados_publico/'+categoria,{headers:headers});
   } 
+
 }
