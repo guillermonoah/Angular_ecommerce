@@ -3,7 +3,9 @@ import { ClienteService } from '../../services/cliente.service';
 import { Router } from '@angular/router';
 import { GLOBAL } from '../../services/global';
 import { response } from 'express';
+import { io } from "socket.io-client";
 declare var $:any;
+declare var iziToast:any;
 
 @Component({
   selector: 'app-nav',
@@ -20,6 +22,7 @@ export class NavComponent implements OnInit {
   public carrito_Arr: Array<any> = [];
   public url:any;
   public subtotal:any = 0;
+  public socket = io('http://localhost:4201');
 
   constructor(
     private _clienteService:ClienteService,
@@ -45,12 +48,7 @@ export class NavComponent implements OnInit {
           if(localStorage.getItem('user_data')){
             this.user_lc = JSON.parse(localStorage.getItem('user_data')!);
 
-            this._clienteService.obtener_carrito_cliente(this.user_lc._id,this.token).subscribe(
-              response=>{
-                this.carrito_Arr = response.data;   
-                this.calcular_carrito();             
-              }
-            );
+            this.obtener_carrito();
           }else{
             this.user_lc = undefined;
           }
@@ -61,8 +59,21 @@ export class NavComponent implements OnInit {
     }
   }
 
+  obtener_carrito(){
+    this._clienteService.obtener_carrito_cliente(this.user_lc._id,this.token).subscribe(
+      response=>{
+        this.carrito_Arr = response.data;   
+        this.calcular_carrito();             
+      }
+    );
+  }
+
+
   ngOnInit(): void {
-    
+    this.socket.on('new-carrito',(data:any) =>{
+      console.log(data);
+      this.obtener_carrito();
+    });
   }
 
   logout(){
@@ -82,6 +93,7 @@ export class NavComponent implements OnInit {
   }
 
   calcular_carrito(){
+    this.subtotal =0;
     this.carrito_Arr.forEach(element => {
       this.subtotal = this.subtotal + parseInt(element.producto.precio);
     })
@@ -90,6 +102,15 @@ export class NavComponent implements OnInit {
   eliminar_item(id:any){
     this._clienteService.eliminar_carrito_cliente(id,this.token).subscribe(
       response=>{
+        iziToast.show({
+          title: 'SUCCESS',
+          titleColor: '#1DC74C',
+          class: 'text-SUCCESS',
+          position: 'topRight',
+          message: 'Se elimino el producto correctamente'
+        });
+
+        this.socket.emit('delete-carrito',{data:response.data});
         console.log(response);
         
       }

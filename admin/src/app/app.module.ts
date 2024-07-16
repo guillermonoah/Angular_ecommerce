@@ -24,6 +24,9 @@ import { UpdateCuponComponent } from './components/cupones/update-cupon/update-c
 import { ConfigComponent } from './components/config/config.component';
 import { VariedadProductoComponent } from './components/productos/variedad-producto/variedad-producto.component';
 import { GaleriaProductoComponent } from './components/productos/galeria-producto/galeria-producto.component';
+import { CreateDescuentoComponent } from './components/descuentos/create-descuento/create-descuento.component';
+import { EditDescuentoComponent } from './components/descuentos/edit-descuento/edit-descuento.component';
+import { IndexDescuentoComponent } from './components/descuentos/index-descuento/index-descuento.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { GaleriaProductoComponent } from './components/productos/galeria-product
     ConfigComponent,
     VariedadProductoComponent,
     GaleriaProductoComponent,
+    CreateDescuentoComponent,
+    EditDescuentoComponent,
+    IndexDescuentoComponent,
   ],
   imports: [
     BrowserModule,
